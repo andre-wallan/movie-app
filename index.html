@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App - Your Personal Movie Tracker</title>
+    <meta name="description" content="Search movies, manage your watchlist, and rate your favorites">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🎬 Movie App</h1>
+            <nav class="nav">
+                <button class="nav-btn active" data-view="home">Home</button>
+                <button class="nav-btn" data-view="watchlist">Watchlist</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main">
+        <!-- Home View: Search & Results -->
+        <section id="home-view" class="view active">
+            <div class="container">
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <h2>Search for Movies</h2>
+                    <div class="search-bar">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Enter movie title..."
+                            autocomplete="off"
+                        >
+                        <button id="search-btn" class="btn btn-primary">
+                            🔍 Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                <div id="search-results" class="results-grid">
+                    <!-- Results will be dynamically inserted here -->
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Searching for movies...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="error-message hidden"></div>
+            </div>
+        </section>
+
+        <!-- Movie Details View -->
+        <section id="details-view" class="view">
+            <div class="container">
+                <button id="back-btn" class="btn btn-secondary">← Back</button>
+                <div id="movie-details">
+                    <!-- Movie details will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Watchlist View -->
+        <section id="watchlist-view" class="view">
+            <div class="container">
+                <h2>My Watchlist</h2>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Movies</button>
+                    <button class="filter-btn" data-filter="unwatched">To Watch</button>
+                    <button class="filter-btn" data-filter="watched">Watched</button>
+                </div>
+
+                <!-- Watchlist Grid -->
+                <div id="watchlist-grid" class="results-grid">
+                    <!-- Watchlist items will be dynamically inserted here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-watchlist" class="empty-state hidden">
+                    <p>Your watchlist is empty!</p>
+                    <p>Search for movies and add them to your watchlist.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Movie data provided by <ahref="https://www.omdbapi.com/" target="_blank">OMDb API</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
