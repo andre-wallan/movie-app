@@ -11,7 +11,7 @@
 :root {
     /* Color Palette */
     --primary-color: #e50914;
-    --secondary-color: #221f1f;
+    --secondary-color: #18053a;
     --background-color: #141414;
     --card-background: #2f2f2f;
     --text-primary: #ffffff;
@@ -82,7 +82,7 @@ body {
 .logo {
     font-size: var(--font-size-xl);
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--text-primary);
 }
 
 .nav {
@@ -107,7 +107,7 @@ body {
 
 .nav-btn.active {
     color: var(--text-primary);
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 /* ===================================
@@ -161,7 +161,7 @@ body {
 
 #search-input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--secondary-color);
 }
 
 /* ===================================
@@ -179,12 +179,12 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-primary);
 }
 
 .btn-primary:hover {
-    background-color: #f40612;
+    background-color: #130499;
     transform: translateY(-2px);
 }
 
@@ -271,8 +271,8 @@ body {
 }
 
 .filter-btn.active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
     color: var(--text-primary);
 }
 
@@ -301,7 +301,7 @@ body {
 }
 
 .error-message {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-primary);
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
