@@ -3,7 +3,7 @@
 // ===================================
 
 // IMPORTANT: Replace with your actual API key from OMDb
-const API_KEY = 'YOUR_API_KEY_HERE'; // ← PUT YOUR KEY HERE
+const API_KEY = 'http://www.omdbapi.com/?i=tt3896198&apikey=8c1a8b46'; // ← PUT YOUR KEY HERE
 const API_BASE_URL = 'https://www.omdbapi.com/';
 
 /**
