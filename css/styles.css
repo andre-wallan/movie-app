@@ -370,3 +370,261 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* ===================================
+   Movie Details Page
+   =================================== */
+
+.movie-details-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.movie-details-poster img {
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.movie-details-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.movie-details-title .year {
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.movie-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.movie-meta span {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+}
+
+.movie-meta .rating {
+    background-color: var(--warning-color);
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.movie-genre {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-base);
+}
+
+.movie-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.movie-details-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.movie-details-section h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-xs);
+}
+
+.movie-details-section p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-sm);
+}
+
+.movie-details-section strong {
+    color: var(--text-primary);
+}
+
+/* ===================================
+   User Rating & Review
+   =================================== */
+
+.user-section {
+    background-color: var(--card-background);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+}
+
+.star-rating {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 2rem;
+}
+
+.star {
+    cursor: pointer;
+    color: var(--border-color);
+    transition: color var(--transition-speed);
+}
+
+.star:hover,
+.star.filled {
+    color: var(--warning-color);
+}
+
+.review-textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    resize: vertical;
+    margin-bottom: var(--spacing-sm);
+}
+
+.review-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ===================================
+   Watchlist Cards
+   =================================== */
+
+.watchlist-card .watchlist-status {
+    margin: var(--spacing-sm) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.status-badge.watched {
+    background-color: var(--success-color);
+    color: var(--secondary-color);
+}
+
+.status-badge.unwatched {
+    background-color: var(--card-background);
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+}
+
+.user-rating {
+    color: var(--warning-color);
+    font-size: var(--font-size-sm);
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+}
+
+/* ===================================
+   Button Variations
+   =================================== */
+
+.btn-small {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--secondary-color);
+}
+
+.btn-success:hover {
+    background-color: #3bc45a;
+}
+
+.btn-danger {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-danger:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+/* ===================================
+   Notification Toast
+   =================================== */
+
+.notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--success-color);
+    color: var(--secondary-color);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    transition: bottom var(--transition-speed);
+    z-index: 1000;
+}
+
+.notification.show {
+    bottom: var(--spacing-lg);
+}
+
+/* ===================================
+   Enhanced Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+    .movie-details-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .movie-details-poster {
+        text-align: center;
+    }
+    
+    .movie-details-poster img {
+        max-width: 300px;
+    }
+    
+    .movie-actions {
+        flex-direction: column;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-meta {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .star-rating {
+        font-size: 1.5rem;
+    }
+}

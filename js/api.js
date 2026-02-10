@@ -3,7 +3,7 @@
 // ===================================
 
 // IMPORTANT: Replace with your actual API key from OMDb
-const API_KEY = 'your_api_key_here';
+const API_KEY = 'YOUR_API_KEY_HERE'; // ← PUT YOUR KEY HERE
 const API_BASE_URL = 'https://www.omdbapi.com/';
 
 /**
@@ -12,7 +12,17 @@ const API_BASE_URL = 'https://www.omdbapi.com/';
  */
 async function searchMovies(searchTerm) {
     try {
-        const url = `${API_BASE_URL}?apikey=${API_KEY}&s=${encodeURIComponent(searchTerm)}`;
+        // Validate API key
+        if (!checkApiKey()) {
+            showError('Please configure your API key in api.js');
+            showLoading(false);
+            return;
+        }
+
+        const url = `${API_BASE_URL}?apikey=${API_KEY}&s=${encodeURIComponent(searchTerm)}&type=movie`;
+        
+        console.log('Searching for:', searchTerm);
+        
         const response = await fetch(url);
         const data = await response.json();
         
@@ -20,15 +30,17 @@ async function searchMovies(searchTerm) {
         showLoading(false);
         
         if (data.Response === 'True') {
+            console.log('Found', data.Search.length, 'movies');
             // Render search results
             renderSearchResults(data.Search);
         } else {
             // Show error message
-            showError(data.Error || 'No movies found');
+            showError(data.Error || 'No movies found. Try a different search term.');
+            clearSearchResults();
         }
     } catch (error) {
         showLoading(false);
-        showError('Failed to fetch movies. Please try again.');
+        showError('Failed to fetch movies. Please check your internet connection.');
         console.error('Search error:', error);
     }
 }
@@ -39,18 +51,33 @@ async function searchMovies(searchTerm) {
  */
 async function getMovieDetails(imdbID) {
     try {
+        // Validate API key
+        if (!checkApiKey()) {
+            showError('Please configure your API key in api.js');
+            return;
+        }
+
+        // Show loading in details view
+        const detailsContainer = document.getElementById('movie-details');
+        detailsContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading movie details...</p></div>';
+
         const url = `${API_BASE_URL}?apikey=${API_KEY}&i=${imdbID}&plot=full`;
+        
+        console.log('Fetching details for:', imdbID);
+        
         const response = await fetch(url);
         const data = await response.json();
         
         if (data.Response === 'True') {
+            console.log('Movie details loaded:', data.Title);
             // Render movie details
             renderMovieDetails(data);
         } else {
-            showError('Failed to load movie details');
+            detailsContainer.innerHTML = `<div class="error-message">Failed to load movie details</div>`;
         }
     } catch (error) {
-        showError('Failed to fetch movie details. Please try again.');
+        const detailsContainer = document.getElementById('movie-details');
+        detailsContainer.innerHTML = `<div class="error-message">Failed to fetch movie details. Please try again.</div>`;
         console.error('Details error:', error);
     }
 }
@@ -59,12 +86,23 @@ async function getMovieDetails(imdbID) {
  * Check if API key is configured
  */
 function checkApiKey() {
-    if (API_KEY === 'your_api_key_here') {
-        console.warn('⚠️ Please add your OMDb API key in api.js');
+    if (API_KEY === 'YOUR_API_KEY_HERE' || API_KEY === '') {
+        console.error('⚠️ API key not configured!');
+        console.log('Get your free API key at: https://www.omdbapi.com/apikey.aspx');
         return false;
     }
     return true;
 }
 
 // Check API key on load
-checkApiKey();
+if (!checkApiKey()) {
+    console.warn('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.warn('⚠️  OMDb API KEY REQUIRED');
+    console.warn('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.warn('1. Visit: https://www.omdbapi.com/apikey.aspx');
+    console.warn('2. Select FREE plan and enter your email');
+    console.warn('3. Check your email for activation');
+    console.warn('4. Copy your API key');
+    console.warn('5. Paste it in js/api.js (line 7)');
+    console.warn('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+}
