@@ -4,7 +4,7 @@
 
 // IMPORTANT: Replace with your actual API key from OMDb
 const API_KEY = 'http://www.omdbapi.com/?i=tt3896198&apikey=8c1a8b46'; // ← PUT YOUR KEY HERE
-const API_BASE_URL = 'https://www.omdbapi.com/';
+const API_BASE_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=8c1a8b46';
 
 /**
  * Search for movies by title
@@ -86,7 +86,7 @@ async function getMovieDetails(imdbID) {
  * Check if API key is configured
  */
 function checkApiKey() {
-    if (API_KEY === 'YOUR_API_KEY_HERE' || API_KEY === '') {
+    if (API_KEY === 'http://www.omdbapi.com/?i=tt3896198&apikey=8c1a8b46' || API_KEY === '') {
         console.error('⚠️ API key not configured!');
         console.log('Get your free API key at: https://www.omdbapi.com/apikey.aspx');
         return false;
