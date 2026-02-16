@@ -628,3 +628,52 @@ body {
         font-size: 1.5rem;
     }
 }
+/* ===================================
+   Recommendations Section
+   =================================== */
+
+.recommendations-section {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
+}
+
+.section-heading {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.search-results-section {
+    margin-top: var(--spacing-xl);
+}
+
+.search-results-section.hidden {
+    display: none;
+}
+
+/* Recommendations specific styling */
+.recommendations-section .movie-card {
+    position: relative;
+}
+
+.recommendations-section .movie-card::after {
+    content: '⭐ Recommended';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--warning-color);
+    color: var(--secondary-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}

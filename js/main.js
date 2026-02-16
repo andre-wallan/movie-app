@@ -107,6 +107,17 @@ function handleSearch() {
         return;
     }
     
+    // Hide recommendations, show search results section
+    const recommendationsSection = document.getElementById('recommendations-section');
+    const searchResultsSection = document.getElementById('search-results-section');
+    
+    if (recommendationsSection) {
+        recommendationsSection.classList.add('hidden');
+    }
+    if (searchResultsSection) {
+        searchResultsSection.classList.remove('hidden');
+    }
+    
     // Clear previous results
     clearSearchResults();
     

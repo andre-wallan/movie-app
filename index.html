@@ -19,6 +19,14 @@
         </div>
     </header>
 
+    <!-- JavaScript Files -->
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/api.js"></script>
+<script src="js/recommendations.js"></script>  <!-- ADD THIS -->
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+
     <!-- Main Content Area -->
     <main class="main">
         <!-- Home View: Search & Results -->
@@ -38,9 +46,14 @@
                             🔍 Search
                         </button>
                     </div>
-                </div>
+</div>
 
-                <!-- Search Results -->
+<!-- ADD THIS: Recommendations Section -->
+<div id="recommendations-section" class="recommendations-section">
+    <!-- Recommendations will be loaded here -->
+</div>
+
+<!-- Search Results -->
                 <div id="search-results" class="results-grid">
                     <!-- Results will be dynamically inserted here -->
                 </div>
@@ -95,15 +108,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>Movie data provided by <ahref="https://www.omdbapi.com/" target="_blank">OMDb API</a></p>
+            <p>Movie data provided by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener noreferrer">OMDb API</a></p>
         </div>
     </footer>
-
-    <!-- JavaScript Files -->
-    <script src="js/utils.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
