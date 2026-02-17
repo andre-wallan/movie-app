@@ -3,8 +3,8 @@
 // ===================================
 
 // IMPORTANT: Replace with your actual API key from OMDb
-const API_KEY = '8c1a8b46'; // ← PUT YOUR KEY HERE
-const API_BASE_URL = 'http://www.omdbapi.com/';
+const API_KEY = '8c1a8b46';
+const API_BASE_URL = 'https://www.omdbapi.com/';
 
 /**
  * Search for movies by title
@@ -105,4 +105,20 @@ if (!checkApiKey()) {
     console.warn('4. Copy your API key');
     console.warn('5. Paste it in js/api.js (line 7)');
     console.warn('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+}
+
+async function fetchYouTubeId(title) {
+    const key = 'YOUR_YOUTUBE_API_KEY';
+    const q = encodeURIComponent(title + ' trailer');
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${q}&key=${key}&type=video&maxResults=1`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.items && data.items.length) {
+            return data.items[0].id.videoId;
+        }
+    } catch (err) {
+        console.error('YouTube fetch error:', err);
+    }
+    return null;
 }

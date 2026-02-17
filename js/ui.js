@@ -3,6 +3,15 @@
 // ===================================
 
 /**
+ * Get a placeholder image as a data URI
+ * @returns {string} SVG placeholder as data URI
+ */
+function getPosterPlaceholder() {
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="300" height="450" fill="#2f2f2f"/><text x="150" y="225" font-family="Arial" font-size="16" fill="#b3b3b3" text-anchor="middle" dy=".3em">No Poster</text></svg>';
+    return 'data:image/svg+xml;base64,' + btoa(svg);
+}
+
+/**
  * Render search results to the DOM
  * @param {Array} movies - Array of movie objects from API
  */
@@ -31,7 +40,7 @@ function createMovieCard(movie) {
     card.className = 'movie-card';
     
     // Use placeholder if no poster
-    const poster = movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450/2f2f2f/b3b3b3?text=No+Poster';
+    const poster = movie.Poster !== 'N/A' ? movie.Poster : getPosterPlaceholder();
     
     card.innerHTML = `
         <img src="${poster}" alt="${movie.Title}" loading="lazy">
@@ -43,6 +52,12 @@ function createMovieCard(movie) {
             </div>
         </div>
     `;
+    
+    // Add error handler for image
+    const img = card.querySelector('img');
+    img.addEventListener('error', function() {
+        this.src = getPosterPlaceholder();
+    });
     
     // Click to view details
     card.addEventListener('click', () => {
@@ -64,7 +79,7 @@ function renderMovieDetails(movie) {
     // Get user data if movie is in watchlist
     const watchlistData = inWatchlist ? getWatchlist()[movie.imdbID] : null;
     
-    const poster = movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450/2f2f2f/b3b3b3?text=No+Poster';
+    const poster = movie.Poster !== 'N/A' ? movie.Poster : getPosterPlaceholder();
     
     detailsContainer.innerHTML = `
         <div class="movie-details-container">
@@ -130,6 +145,12 @@ function renderMovieDetails(movie) {
             </div>
         </div>
     `;
+    
+    // Add error handler for poster image
+    const posterImg = detailsContainer.querySelector('img');
+    posterImg.addEventListener('error', function() {
+        this.src = getPosterPlaceholder();
+    });
     
     // Set up event listeners
     setupDetailsEventListeners(movie, inWatchlist, watchlistData);
@@ -255,7 +276,7 @@ function createWatchlistCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card watchlist-card';
     
-    const poster = movie.poster !== 'N/A' ? movie.poster : 'https://via.placeholder.com/300x450/2f2f2f/b3b3b3?text=No+Poster';
+    const poster = movie.poster !== 'N/A' ? movie.poster : getPosterPlaceholder();
     
     card.innerHTML = `
         <img src="${poster}" alt="${movie.title}" loading="lazy">
@@ -281,6 +302,12 @@ function createWatchlistCard(movie) {
             </div>
         </div>
     `;
+    
+    // Add error handler for poster image
+    const img = card.querySelector('img');
+    img.addEventListener('error', function() {
+        this.src = getPosterPlaceholder();
+    });
     
     // View button
     const viewBtn = card.querySelector('.view-btn');
